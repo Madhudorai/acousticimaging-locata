@@ -43,7 +43,7 @@ This will:
   ```
 
 
-## 📈 Acoustic Imaging
+### 📈 Acoustic Imaging
 
 Supported methods: **DAS**, **MUSIC**, **DAMAS**
 
@@ -53,7 +53,7 @@ Run:
 python3 room.py --room room001 --acousticimagingalgo DAS --num_channels 32
 ```
 
-### Options:
+#### Options:
 
 * `--room` — One of the **5 rooms**:
   `room001`, `room002`, …, `room005`
