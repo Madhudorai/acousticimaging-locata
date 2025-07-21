@@ -34,9 +34,9 @@ python3 datagen.py
 
 This will:
 
-* ✅ Convolve each IR with Gaussian white noise (SD = 0.01)
-* ✅ Save multichannel `.wav` files in `simulated_data/`
-* ✅ Save metadata:
+* Convolve each IR with Gaussian white noise (SD = 0.01)
+* Save multichannel `.wav` files in `simulated_data/`
+* Save metadata:
 
   ```csv
   frame, source_id, azimuth, elevation, distance
@@ -44,8 +44,6 @@ This will:
 
 
 ### 📈 Acoustic Imaging
-
-Supported methods: **DAS**, **MUSIC**, **DAMAS**
 
 Run:
 
@@ -64,10 +62,9 @@ python3 room.py --room room001 --acousticimagingalgo DAS --num_channels 32
 
   * (For `4`, the microphones `[6, 10, 26, 22]` form a near-tetrahedral array)
 
+#### Outputs: 
 
-For each audio & each (`n_melbands`, `band_idx`) configuration:
-
-* Framewise predictions saved as:
+* For each audio & each (`n_melbands`, `band_idx`) configuration - Framewise predictions saved as:
 
   ```csv
   frame, n_melbands, band_idx, azimuth, elevation, gt_azimuth, gt_elevation
@@ -87,4 +84,41 @@ For each audio & each (`n_melbands`, `band_idx`) configuration:
   * Acoustic imaging plots framewise with ground truth, predictions also plotted
 
 ---
+## LOCATA Tasks 
+Run:
+
+```bash
+python3 locata-singlesource.py --task 1 --acousticimagingalgo DAS --num_channels 32
+
+python3 locata-multisource.py --task 2 --acousticimagingalgo DAS --num_channels 32
+```
+
+#### Options:
+
+* `--task` — 1,2,3,4,5,6 - choose based on whether the task has single/multiple sources
+* `--acousticimagingalgo` — Choose algorithm:
+  `DAS`, `MUSIC`, or `DAMAS`
+* `--num_channels` — Choose number of microphones:
+  `4` or `32`
+
+  * (For `4`, the microphones `[6, 10, 26, 22]` form a near-tetrahedral array)
+
+#### Outputs: 
+
+* For each audio & each (`n_melbands`, `band_idx`) configuration - Framewise predictions saved as:
+
+  ```csv
+  frame, n_melbands, band_idx, azimuth, elevation, gt_azimuth, gt_elevation, angular_error
+  ```
+
+  in `predictions_withgt.csv`
+
+* Runs for:
+
+  * `n_melbands, band_idx` configuration = 3,2  - can change to run for a list of configs
+
+* Automatically computes & reports:
+
+  * Mean Angular Error (MAE) framewise
+  * Acoustic imaging plots framewise with ground truth, predictions also plotted
 
