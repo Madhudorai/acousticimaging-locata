@@ -1,3 +1,4 @@
+https://colab.research.google.com/drive/1gzUrN9pNXrsOwnHA3cTDOMa2gtTjIHy-?usp=sharing
 
 ## 🚀 Setup
 
@@ -15,16 +16,14 @@ pip install -r requirements.txt
 
 ### 📂 Data: `dcase_irs_`
 
-* Contains **precomputed multichannel impulse responses (IRs)** in **Ambisonics A-format**.
+* Contains **precomputed multichannel impulse responses (IRs)** in Ambisonics A-format.
 * Simulated in **5 indoor environments** (from the Gibson dataset) using **SoundSpaces 2.0**.
-* Microphone:
-
-  * 32-channel **EigenMike** placed at the center of the room.
+* Microphone: 32-channel EigenMike placed at the center of the room.
 * Sources:
 
   * 20 uniformly placed static sources with direct line-of-sight to the array, minimum distances from the array and walls.
 
-### 🔨 Generate Synthetic Audio
+### Generate Synthetic Audio
 
 Run:
 
@@ -34,16 +33,16 @@ python3 datagen.py
 
 This will:
 
-* Convolve each IR with Gaussian white noise (SD = 0.01)
+* **Convolve each IR with Gaussian white noise** (SD = 0.01)
 * Save multichannel `.wav` files in `simulated_data/`
-* Save metadata:
+* **Save metadata**:
 
   ```csv
   frame, source_id, azimuth, elevation, distance
   ```
 
 
-### 📈 Acoustic Imaging
+### Acoustic Imaging
 
 Run:
 
@@ -56,9 +55,9 @@ python3 room.py --room room001 --acousticimagingalgo DAS --num_channels 32
 * `--room` — One of the **5 rooms**:
   `room001`, `room002`, …, `room005`
 * `--acousticimagingalgo` — Choose algorithm:
-  `DAS`, `MUSIC`, or `DAMAS`
+  **`DAS`, `MUSIC`, or `DAMAS`**
 * `--num_channels` — Choose number of microphones:
-  `4` or `32`
+  **`4` or `32`**
 
   * (For `4`, the microphones `[6, 10, 26, 22]` form a near-tetrahedral array)
 
@@ -84,7 +83,9 @@ python3 room.py --room room001 --acousticimagingalgo DAS --num_channels 32
   * Acoustic imaging plots framewise with ground truth, predictions also plotted
 
 ---
-## LOCATA Tasks 
+## LOCATA Dataset Tasks 
+
+### Acoustic Imaging
 Run:
 
 ```bash
@@ -95,11 +96,11 @@ python3 locata-multisource.py --task 2 --acousticimagingalgo DAS --num_channels 
 
 #### Options:
 
-* `--task` — 1,2,3,4,5,6 - choose based on whether the task has single/multiple sources
+* **`--task` — 1,2,3,4** - choose based on whether the task has single/multiple sources
 * `--acousticimagingalgo` — Choose algorithm:
-  `DAS`, `MUSIC`, or `DAMAS`
+  **`DAS`, `MUSIC`, or `DAMAS`**
 * `--num_channels` — Choose number of microphones:
-  `4` or `32`
+  **`4` or `32`**
 
   * (For `4`, the microphones `[6, 10, 26, 22]` form a near-tetrahedral array)
 
