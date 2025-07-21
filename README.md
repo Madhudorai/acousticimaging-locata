@@ -85,13 +85,14 @@ python3 room.py --room room001 --acousticimagingalgo DAS --num_channels 32
 ---
 ## LOCATA Dataset Tasks 
 
-### Acoustic Imaging
+### Acoustic Imaging 
 Run:
 
 ```bash
 python3 locata-singlesource.py --task 1 --acousticimagingalgo DAS --num_channels 32
 
 python3 locata-multisource.py --task 2 --acousticimagingalgo DAS --num_channels 32
+
 ```
 
 #### Options:
@@ -123,3 +124,41 @@ python3 locata-multisource.py --task 2 --acousticimagingalgo DAS --num_channels 
   * Mean Angular Error (MAE) framewise
   * Acoustic imaging plots framewise with ground truth, predictions also plotted
 
+### Acoustic Imaging - Combining multiple frequency bands 
+
+Run:
+
+```bash
+python3 locata-singlesource-bandsfusion.py --task 1 --methodtype BEST_COMBO --acousticimagingalgo DAS --num_channels 32 
+
+python3 locata-multisource.py --task 2 --methodtype BEST_COMBO --acousticimagingalgo DAS --num_channels 32
+
+```
+#### Options:
+
+* **`--task` — 1,2,3,4** - choose based on whether the task has single/multiple sources
+* `--methodtype` — choose method: BEST_COMBO or AVERAGE_COMBO. 
+   ** BEST_COMBO takes top 5% of all freq bands max spectral intensity points and then finds the max intensity location (singlesource)/ kmeans clusters=3 and returns 3 centroids (multisource)
+   ** AVERAGE_COMBO stacks all freq band's spectral intensity maps on top of each other, averages and then finds the max intensity location (singlesource)/ kmeans clusters=3 and returns 3 centroids (multisource)
+   
+* `--acousticimagingalgo` — Choose algorithm:
+  **`DAS`, `MUSIC`, or `DAMAS`**
+* `--num_channels` — Choose number of microphones:
+  **`4` or `32`**
+  * (For `4`, the microphones `[6, 10, 26, 22]` form a near-tetrahedral array)
+
+#### Outputs: 
+
+* For each audio & each (`n_melbands`, `band_idx`) configuration - Framewise predictions saved as:
+
+  ```csv
+  frame, n_melbands, band_idx, azimuth, elevation, gt_azimuth, gt_elevation, angular_error
+  ```
+
+  in `predictions_withgt.csv`
+  
+* Runs for:
+
+  * `n_melbands` = 6 and `bandindices` = [2,3,4]  - can change to run for different nmelbands and bandindices
+
+* Automatically computes & reports: Mean Angular Error (MAE) framewise
