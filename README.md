@@ -1,5 +1,4 @@
 
----
 ## 🚀 Setup
 
 Create a Python virtual environment and install dependencies:
@@ -25,8 +24,6 @@ pip install -r requirements.txt
 
   * 20 uniformly placed static sources with direct line-of-sight to the array, minimum distances from the array and walls.
 
----
-
 ### 🔨 Generate Synthetic Audio
 
 Run:
@@ -45,7 +42,6 @@ This will:
   frame, source_id, azimuth, elevation, distance
   ```
 
----
 
 ## 📈 Acoustic Imaging
 
@@ -68,7 +64,6 @@ python3 room.py --room room001 --acousticimagingalgo DAS --num_channels 32
 
   * (For `4`, the microphones `[6, 10, 26, 22]` form a near-tetrahedral array)
 
----
 
 For each audio & each (`n_melbands`, `band_idx`) configuration:
 
@@ -91,4 +86,5 @@ For each audio & each (`n_melbands`, `band_idx`) configuration:
   * Distance vs. error analysis
   * Acoustic imaging plots framewise with ground truth, predictions also plotted
 
+---
 
