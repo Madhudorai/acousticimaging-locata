@@ -1,8 +1,5 @@
 
 ---
-
-# 📡 AcousticImaging-LOCATA
-
 ## 🚀 Setup
 
 Create a Python virtual environment and install dependencies:
@@ -15,7 +12,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🎧 Synthetic Data
+## Synthetic Data
 
 ### 📂 Data: `dcase_irs_`
 
@@ -26,10 +23,7 @@ pip install -r requirements.txt
   * 32-channel **EigenMike** placed at the center of the room.
 * Sources:
 
-  * 20 uniformly placed static sources with:
-
-    * direct line-of-sight to the array,
-    * minimum distances from the array and walls.
+  * 20 uniformly placed static sources with direct line-of-sight to the array, minimum distances from the array and walls.
 
 ---
 
@@ -76,8 +70,6 @@ python3 room.py --room room001 --acousticimagingalgo DAS --num_channels 32
 
 ---
 
-### 📋 Outputs
-
 For each audio & each (`n_melbands`, `band_idx`) configuration:
 
 * Framewise predictions saved as:
@@ -97,6 +89,6 @@ For each audio & each (`n_melbands`, `band_idx`) configuration:
 
   * Mean Angular Error (MAE) & Standard Deviation (STD) per (`n_melbands`, `band_idx`)
   * Distance vs. error analysis
-  * Visualization plots framewise with ground truth, predictions also plotted
+  * Acoustic imaging plots framewise with ground truth, predictions also plotted
 
----
+
